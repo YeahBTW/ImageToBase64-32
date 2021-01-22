@@ -1,0 +1,33 @@
+#!/usr/bin/python3
+
+import base64
+import sys
+from PIL import Image
+from io import BytesIO
+
+if (sys.argv[1] == "-e"):
+    with open(str(sys.argv[2]), "rb") as image_file:
+        encode_string = base64.b32encode(image_file.read())
+    if (sys.argv[3] == ""):
+        print(encode_string)
+    else:
+        outputfile = open(sys.argv[3], "w+")
+        print("writing to ", sys.argv[3])
+        outputfile.write(encode_string.decode('utf-8'))
+        outputfile.close()
+        print("Done!")
+
+if (sys.argv[1] == "-i"):
+    print("opening ", sys.argv[2])
+    data = open(sys.argv[2], "r").read()
+    print("converting to image...")
+    im = Image.open(BytesIO(base64.b32decode(data)))
+    print("saving as ", sys.argv[3])
+    im.save(sys.argv[3])
+
+if (sys.argv[1] == "-h"):
+    print("===HELP MENU===")
+    print("")
+    print("command  args                                What it does")
+    print("-e       <InputFile> <OptionalOutputFile>    coverts the input image into a base32 file")
+    print("-i       <InputFile> <OutputFile>            converts the base32 input file to an image")
