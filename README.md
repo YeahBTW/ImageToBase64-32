@@ -1,6 +1,5 @@
 # ImageToBase64-32
-easy to use image to base64/32 (or the other way aroud) converter!
-(Pick the right python script for base64 or base32)
+easy to use image to base64/32 (or the other way aroud) converter! (Pick the right python script for base64 or base32)
 
 |command  |args                                |What it does                                |
 |---------|------------------------------------|--------------------------------------------|
